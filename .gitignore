@@ -1,0 +1,4 @@
+# Temp build stuff
+builddir
+subprojects
+!subprojects/*.wrap
