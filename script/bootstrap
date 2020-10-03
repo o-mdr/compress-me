@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# script/bootstrap: Resolve all dependencies that the application requires to run.
+
+set -e
+
+cd "$(dirname "$0")/.."
+
+echo "==> Installing build tools..."
+sudo apt-get -y install python3 python3-pip python3-setuptools python3-wheel ninja-build
+
+
+echo "==> Installing python dependencies..."
+pip3 install --user meson
+
+echo "==> Reloading profile file"
+. ~/.profile
+
+echo "Bootstraping is done"
