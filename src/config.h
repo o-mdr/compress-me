@@ -1,0 +1,1 @@
+#define VERSION_STR "REPLACE via config.h.in template file"
