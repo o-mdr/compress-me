@@ -17,4 +17,5 @@ meson compile -C builddir
 Any contributions are welcome, please submit a PR. All contributions are made and accepted under this project's license. 
 
 ## License
-MIT, see [LICENSE](LICENSE) for details.
+This project is dual licenced under [MIT](LICENSE) or [GNU GPLv2](COPYING).
+You may choose either license at your own will.

@@ -5,5 +5,11 @@
     
     "workbench.colorCustomizations": {
         "editorRuler.foreground": "#ff4081"
+    },
+    "files.autoSave": "onFocusChange",
+    "files.eol": "\n",
+    "files.insertFinalNewline": true,
+    "files.associations": {
+        "*.in": "cpp"
     }
 }
