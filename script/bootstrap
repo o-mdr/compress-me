@@ -16,4 +16,7 @@ pip3 install --user meson
 echo "==> Reloading profile file"
 . ~/.profile
 
+echo "==> Setting up meson environment"
+meson setup builddir
+
 echo "Bootstraping is done"
