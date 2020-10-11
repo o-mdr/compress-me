@@ -10,15 +10,16 @@ configure_file(input : 'src/config.h.in',
                output : 'config.h',
                configuration : conf_data)
 
-src_include = include_directories('./src')
+src_include = include_directories('./src/core')
 
 # zstd subproject
 subproject ('zstd')
-zstd = dependency('zstd_dep', fallback : ['zstd', 'zstd_dep'])
+zstd = dependency('libzstd_dep', fallback : ['zstd', 'libzstd_dep'])
 
-# executable('compress-data-struct-cpp', 'src/core/example.cpp')
 src = [ 
-    'src/unordered_set_compressed.cpp', 
     'src/core/example.cpp'
     ]
 library(src, dependencies: [zstd], include_directories : src_include)
+
+executable('demo', src, dependencies: [zstd],
+    dependencies: [zstd], include_directories : src_include)
