@@ -10,7 +10,7 @@ Use compression algorithms with data structures
 ## Prerequisites
 ```
 cd compress-data-struct-cpp
-sh script/bootstap
+sudo sh script/bootstap
 ```
 
 ## Building
