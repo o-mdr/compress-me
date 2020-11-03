@@ -1,8 +1,8 @@
 project('compress-data-struct-cpp', 
     'cpp', 
     version: '0.1.0',
-    default_options : ['cpp_std=c++17', 'default_library=both'], 
-    license: 'MIT')
+    default_options : ['cpp_std=c++11', 'default_library=both'], 
+    license: 'MIT or GNU GPLv2')
 
 conf_data = configuration_data()
 conf_data.set('version', meson.project_version())
@@ -10,7 +10,7 @@ configure_file(input : 'src/config.h.in',
                output : 'config.h',
                configuration : conf_data)
 
-src_include = include_directories('./src/core')
+src_include = include_directories('src/core')
 
 # zstd subproject
 subproject ('zstd')

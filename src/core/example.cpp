@@ -1,28 +1,25 @@
+#include "compressable.h"
+#include <cstdint>  // uint8_t
 #include <iostream> // std::cout
 #include <map>      // std::map
-#include <stdio.h>
+// #include <stdio.h>
 #include <utility> // std::pair
-
-#include "compressable.h"
+#include <vector>  // std::vector
 
 int main(int argc, char **argv) {
-    printf("Hello there.\n");
 
-    std::map<int, std::string> map;
-    std::pair<int, std::string> p(1, "this is a long really long string");
-    // map.insert (p);
+    compressable::compressable_map<int> cm;
 
-    auto ret = compressable::insert_compress(map, p);
+    std::string payload = "this is a long really long string, this is a long really long string";
+
+    auto ret = compressable::insert(cm, 333, payload.c_str(), payload.size());
     if (ret.second == false) {
         std::cout << "element 'z' already existed";
-        std::cout << " with a value of " << ret.first->second << '\n';
     }
 
-    ret = compressable::insert_compress(map, p);
-    if (ret.second == false) {
-        std::cout << "element 'z' already existed";
-        std::cout << " with a value of " << ret.first->second << '\n';
-    }
+    auto f = compressable::at<int, std::string>(cm, 333);
+
+    std::string str(f.begin(), f.end());
 
     return 0;
 }

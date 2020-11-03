@@ -1,9 +1,8 @@
 {
     "editor.formatOnSave": true,
     "editor.rulers": [
-        80, 120
+        100
     ],
-    
     "workbench.colorCustomizations": {
         "editorRuler.foreground": "#ff4081"
     },
