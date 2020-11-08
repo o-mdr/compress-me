@@ -4,5 +4,6 @@
  * You may choose either license at your own will.
  */
 
+#pragma once
 
 #define VERSION_STR "REPLACE via config.h.in template file"

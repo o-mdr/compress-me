@@ -6,4 +6,5 @@
 
 #pragma once
 
-#define VERSION_STR "@version@"
+#include "common.h"
+#include "compressable_map.h"

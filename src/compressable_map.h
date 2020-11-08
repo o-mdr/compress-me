@@ -4,32 +4,20 @@
  * You may choose either license at your own will.
  */
 
-#include "common.h"  // error checks
-#include <cstdint>   // uint8_t
+#pragma once
+
+#include "common.h"  // compressable_item
+#include "error.h"   // error checks
 #include <map>       // std::map
 #include <memory>    // smart pointers
 #include <stdexcept> // exceptions
 #include <utility>   // std::pair
 #include <vector>    // std::vector
 #include <zstd.h>    // zstd compression
+
 namespace compressable {
 
-struct compressable_item {
-    std::vector<uint8_t> compressed_value;
-    size_t v_size;
-
-    compressable_item(std::vector<uint8_t> c, size_t v) : compressed_value(c), v_size(v) {}
-};
-
 template <class K> using compressable_map = std::map<K, compressable_item>;
-
-// template <class V> V to(const std::vector<uint8_t> &compressed_item) {
-//     if (compressed_item.size() == 0) {
-//         throw std::invalid_argument("compressed item size was 0");
-//     }
-
-//     return static_cast<V>(compressed_item.data());
-// }
 
 template <class K, class V>
 std::pair<typename compressable_map<K>::iterator, bool>

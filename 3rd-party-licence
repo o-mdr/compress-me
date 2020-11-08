@@ -1,4 +1,5 @@
-This software was uses the following open source projects:
+This software uses the following open source projects under their respective license:
 
 - https://github.com/github/scripts-to-rule-them-all (CC 1.0 Universal)
-- https://github.com/facebook/zstd (BSD)
+- https://github.com/facebook/zstd (BSD or GNU GPLv2)
+- https://github.com/catchorg/Catch2 (Boost Software License 1.0)

@@ -6,9 +6,8 @@
 
 Use compression with data structures, minimal example:
 ```
-#include "compressable.h"
+#include "cdsc.h"
 #include <cstdint>  // uint8_t
-#include <iostream> // std::cout
 
 int main(int argc, char **argv) {
 

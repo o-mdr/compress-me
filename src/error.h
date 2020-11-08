@@ -4,6 +4,8 @@
  * You may choose either license at your own will.
  */
 
+#pragma once
+
 #include <stdexcept> // std::runtime_error
 #include <zstd.h>    // zstd compression
 
