@@ -4,5 +4,10 @@
  * You may choose either license at your own will.
  */
 
-#define CATCH_CONFIG_MAIN
-#include <catch2/catch.hpp>
+#pragma once
+
+struct TestStruct {
+    char char_array[50];
+    int a;
+    bool b;
+};
