@@ -4,7 +4,7 @@
 #              individual test file to run a single test.
 
 
-set -e
+set -eux
 
 cd "$(dirname "$0")/.."
 

@@ -6,4 +6,4 @@
 
 #pragma once
 
-#define VERSION_STR "@version@"
+#include "cm_map.h"

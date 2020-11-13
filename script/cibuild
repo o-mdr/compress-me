@@ -1,13 +1,12 @@
 #!/bin/bash
 
-# script/bootstrap: Install dependencies that the application requires 
-#                   for building and running.
+# script/bootstrap: Run build on CI server
 
-set -e
+set -eux
 
 ROOT="$(dirname "$0")/.." 
 BUILD_DIR=builddir
-PROJ_NAME=cdsc
+PROJ_NAME=cm
 ARTIFACTS_ROOT=$BUILD_DIR/artifacts
 ARTIFACTS=$ARTIFACTS_ROOT/$PROJ_NAME
 ARTIFACTS_LIB=$ARTIFACTS/lib
@@ -21,8 +20,7 @@ echo "==> Updating..."
 apt-get update;
 
 echo "==> Installing build tools..."
-apt-get -y install python3 python3-pip python3-setuptools python3-wheel \
-    ninja-build
+apt-get -y install python3 python3-pip python3-setuptools python3-wheel ninja-build
 
 echo "==> Installing python dependencies..."
 pip3 install --upgrade meson
@@ -37,8 +35,8 @@ meson test -C $BUILD_DIR
 echo "==> Collecting artifacts..."
 mkdir -p $ARTIFACTS_LIB $ARTIFACTS_INCLUDE $ARTIFACTS_EXAMPLES $COMPRESSED_ARTIFACTS
 
-cp $BUILD_DIR/libcdsc.a $ARTIFACTS_LIB
-cp $BUILD_DIR/libcdsc.so $ARTIFACTS_LIB
+cp $BUILD_DIR/libcm.a $ARTIFACTS_LIB
+cp $BUILD_DIR/libcm.so $ARTIFACTS_LIB
 cp src/* $ARTIFACTS_INCLUDE
 cp -r $BUILD_DIR/examples/zstd_map $ARTIFACTS_EXAMPLES
 

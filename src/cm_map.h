@@ -6,7 +6,7 @@
 
 #pragma once
 
-#include "common.h"  // compressable_item
+#include "common.h"  // cm_item
 #include "error.h"   // error checks
 #include <map>       // std::map
 #include <memory>    // smart pointers
@@ -15,13 +15,13 @@
 #include <vector>    // std::vector
 #include <zstd.h>    // zstd compression
 
-namespace compressable {
+namespace cm {
 
-template <class K> using compressable_map = std::map<K, compressable_item>;
+template <class K> using cm_map = std::map<K, cm_item>;
 
 template <class K, class V>
-std::pair<typename compressable_map<K>::iterator, bool>
-insert(compressable_map<K> &c_map, const K key, const V &value, const size_t v_size) {
+std::pair<typename cm_map<K>::iterator, bool> insert(cm_map<K> &c_map, const K key, const V &value,
+                                                     const size_t v_size) {
     auto x_max_size = ZSTD_compressBound(v_size);
     std::vector<uint8_t> buf(x_max_size);
 
@@ -31,13 +31,13 @@ insert(compressable_map<K> &c_map, const K key, const V &value, const size_t v_s
     buf.resize(x_size);
     buf.shrink_to_fit();
 
-    auto ci = compressable_item(buf, v_size);
+    auto ci = cm_item(buf, v_size);
 
     return c_map.insert(std::make_pair(key, ci));
 }
 
-template <class K, class V> std::vector<uint8_t> at(compressable_map<K> &c_map, K key) {
-    compressable_item ci = c_map.at(key);
+template <class K, class V> std::vector<uint8_t> at(cm_map<K> &c_map, K key) {
+    cm_item ci = c_map.at(key);
     auto r_size = ZSTD_getFrameContentSize(ci.compressed_value.data(), ci.v_size);
     if (r_size == ZSTD_CONTENTSIZE_ERROR) {
         throw std::runtime_error("not compressed by zstd");
@@ -61,4 +61,4 @@ template <class K, class V> std::vector<uint8_t> at(compressable_map<K> &c_map, 
 
     return buf;
 }
-} // namespace compressable
+} // namespace cm

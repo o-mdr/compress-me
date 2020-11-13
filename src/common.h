@@ -9,13 +9,13 @@
 #include <cstdint> // uint8_t
 #include <vector>  // std::vector
 
-namespace compressable {
+namespace cm {
 
-struct compressable_item {
+struct cm_item {
     std::vector<uint8_t> compressed_value;
     size_t v_size;
 
-    compressable_item(std::vector<uint8_t> c, size_t v) : compressed_value(c), v_size(v) {}
+    cm_item(std::vector<uint8_t> c, size_t v) : compressed_value(c), v_size(v) {}
 };
 
 // template <class V> V to(const std::vector<uint8_t> &compressed_item) {
@@ -25,5 +25,4 @@ struct compressable_item {
 
 //     return static_cast<V>(compressed_item.data());
 // }
-
-} // namespace compressable
+} // namespace cm
