@@ -7,17 +7,16 @@
 Use compression with data structures, minimal example:
 ```
 #include "cm.h"
-#include <cstdint>  // uint8_t
 
 int main(int argc, char **argv) {
 
     int key = 123;
     std::string value = "this is a long really long string";
+
     cm::cm_map<int> cm;    
-
     cm::insert(cm, key, value.c_str(), value.size());
+    auto raw = cm::at(cm, key);
 
-    auto raw = cm::at<int, std::string>(cm, key);
     std::string actual(raw.begin(), raw.end());
 
     return 0;
