@@ -14,26 +14,32 @@ subproject ('catch2')
 catch2 = dependency('catch2_dep', fallback : ['catch2', 'catch2_dep'])
 
 # Library
-libcm = library('cm', 
-    'src/cm.h', 
-    dependencies: [zstd, catch2], 
-    include_directories : libcm_includes)
+if get_option('enable-lib')
+    libcm = library('cm', 
+        'src/cm.h', 
+        dependencies: [zstd, catch2], 
+        include_directories : libcm_includes)
 
-libcm_dep = declare_dependency(link_with: libcm,
-  include_directories: libcm_includes)
+    libcm_dep = declare_dependency(link_with: libcm,
+    include_directories: libcm_includes)
+endif
 
 # Tests
-test_src = [ 
-    'tests/main.cpp',
-    'tests/cm_map_tests.cpp'
-    ]
-cm_unit_tests = executable(
-    'tests/cm_unit_tests',
-    test_src,
-    include_directories : libcm_includes,
-    dependencies: [zstd, catch2])
-test('cm unit tests', cm_unit_tests)
+if get_option('enable-tests')
+    test_src = [ 
+        'tests/main.cpp',
+        'tests/cm_map_tests.cpp'
+        ]
+    cm_unit_tests = executable(
+        'tests/cm_unit_tests',
+        test_src,
+        include_directories : libcm_includes,
+        dependencies: [zstd, catch2])
+    test('compress-me unit tests', cm_unit_tests)
+endif
 
 # Examples
-executable('examples/zstd_map', 'examples/zstd_map.cpp', dependencies: [zstd],
-    dependencies: [zstd], include_directories : libcm_includes)
+if get_option('enable-examples')
+    executable('examples/zstd_map', 'examples/zstd_map.cpp', dependencies: [zstd],
+        dependencies: [zstd], include_directories : libcm_includes)
+endif

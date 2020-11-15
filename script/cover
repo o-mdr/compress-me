@@ -1,18 +1,16 @@
 #!/bin/bash
 
-# script/cibuild: Run build on CI server
+# script/cever: Run code coverage using gcovr
 
 set -eux
 
 ROOT="$(dirname "$0")/.." 
 BOOTSTRAP=$ROOT/script/bootstrap
-BUILD_DIR=builddir
-PROJ_NAME=cm
+BUILD_DIR=builddir_coverage
+PROJ_NAME=gcovr
 ARTIFACTS_ROOT=$BUILD_DIR/artifacts
-ARTIFACTS=$ARTIFACTS_ROOT/$PROJ_NAME
-ARTIFACTS_LIB=$ARTIFACTS/lib
-ARTIFACTS_INCLUDE=$ARTIFACTS/include
-ARTIFACTS_EXAMPLES=$ARTIFACTS/examples
+ARTIFACTS_GCOVR=$ARTIFACTS_ROOT/$PROJ_NAME
+ARTIFACTS_GCOVR_HTML=$ARTIFACTS_GCOVR/html
 COMPRESSED_ARTIFACTS=$BUILD_DIR/compressed-artifacts
 
 cd $ROOT
@@ -23,18 +21,17 @@ export PATH=$PATH:$HOME/.local/bin
 
 echo "==> Running meson steps..."
 rm -rf $BUILD_DIR
-
-meson setup $BUILD_DIR
+meson $BUILD_DIR -Db_coverage=true
 meson compile -C $BUILD_DIR
 meson test -C $BUILD_DIR
+ninja coverage -C $BUILD_DIR
 
 echo "==> Collecting artifacts..."
-mkdir -p $ARTIFACTS_LIB $ARTIFACTS_INCLUDE $ARTIFACTS_EXAMPLES $COMPRESSED_ARTIFACTS
+mkdir -p $ARTIFACTS_GCOVR_HTML $COMPRESSED_ARTIFACTS
 
-cp $BUILD_DIR/libcm.a $ARTIFACTS_LIB
-cp $BUILD_DIR/libcm.so $ARTIFACTS_LIB
-cp src/* $ARTIFACTS_INCLUDE
-cp -r $BUILD_DIR/examples/zstd_map $ARTIFACTS_EXAMPLES
+cp $BUILD_DIR/meson-logs/coverage.xml $ARTIFACTS_GCOVR
+cp $BUILD_DIR/meson-logs/coverage.txt $ARTIFACTS_GCOVR
+cp -r $BUILD_DIR/meson-logs/coveragereport/* $ARTIFACTS_GCOVR_HTML
 
 echo "==> Compressing artifacts..."
 tar -czvf $COMPRESSED_ARTIFACTS/$PROJ_NAME.tar.gz -C $ARTIFACTS_ROOT $PROJ_NAME
@@ -42,4 +39,4 @@ tar -czvf $COMPRESSED_ARTIFACTS/$PROJ_NAME.tar.gz -C $ARTIFACTS_ROOT $PROJ_NAME
 cd $ROOT
 
 
-echo "CI build is done"
+echo "Covering is done"

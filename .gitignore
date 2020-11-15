@@ -1,4 +1,6 @@
 # Temp build stuff
-builddir
+builddir*
 subprojects
+
+# But not wrap files in subprojects
 !subprojects/*.wrap

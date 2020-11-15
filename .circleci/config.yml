@@ -38,10 +38,31 @@ jobs:
           path: builddir/compressed-artifacts/cm.tar.gz
           destination: cm.tar.gz
 
+  # Building with GCC
+  gcovr_job:
+    docker:
+      - image: gcc:10.2
+        auth:
+          username: $DOCKERHUB_USERNAME
+          password: $DOCKERHUB_PASSWORD
+    working_directory: /cm
+    steps:
+      - checkout
+      - run:
+          name: Run coverage script
+          command: sh script/cover            
+      - store_artifacts:
+          path: builddir_coverage/artifacts
+      - store_artifacts:
+          path: builddir_coverage/compressed-artifacts/gcovr.tar.gz
+          destination: gcovr.tar.gz
+
 workflows:
   build_workflow:
     jobs:
       - build_job_clang:
           context: omdr
       - build_job_gcc:
+          context: omdr
+      - gcovr_job:
           context: omdr
