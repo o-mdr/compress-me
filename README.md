@@ -4,7 +4,7 @@
 [![License](https://img.shields.io/badge/license-GPL-green.svg)](https://github.com/o-mdr/compress-me/blob/main/COPYING) 
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/o-mdr/compress-me/blob/main/LICENSE) 
 <a href="https://scan.coverity.com/projects/o-mdr-compress-me">
-  <img alt="Coverity Scan Build Status"src="https://img.shields.io/coverity/scan/22118.svg"/>
+  <img alt="Coverity Scan Build Status" src="https://img.shields.io/coverity/scan/22118.svg"/>
 </a>
 
 Use compression with data structures, minimal example:
