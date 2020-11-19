@@ -18,6 +18,11 @@ struct cm_item {
     cm_item(std::vector<uint8_t> c, size_t v) : compressed_value(c), v_size(v) {}
 };
 
+inline void compact(std::vector<uint8_t> &vector, const size_t real_size) {
+    vector.resize(real_size);
+    vector.shrink_to_fit();
+}
+
 // template <class V> V to(const std::vector<uint8_t> &compressed_item) {
 //     if (compressed_item.size() == 0) {
 //         throw std::invalid_argument("compressed item size was 0");
