@@ -1,11 +1,11 @@
 #!/bin/bash
 
-# script/cibuild: Run build on CI server
+# scripts/cibuild: Run build on CI server
 
 set -eux
 
 ROOT="$(dirname "$0")/.." 
-BOOTSTRAP=$ROOT/script/bootstrap
+BOOTSTRAP=$ROOT/scripts/bootstrap
 BUILD_DIR=builddir
 PROJ_NAME=cm
 ARTIFACTS_ROOT=$BUILD_DIR/artifacts

@@ -1,11 +1,11 @@
 #!/bin/bash
 
-# script/cever: Run code coverage using gcovr
+# scripts/cever: Run code coverage using gcovr
 
 set -eux
 
 ROOT="$(dirname "$0")/.." 
-BOOTSTRAP=$ROOT/script/bootstrap
+BOOTSTRAP=$ROOT/scripts/bootstrap
 BUILD_DIR=builddir_coverage
 PROJ_NAME=gcovr
 ARTIFACTS_ROOT=$BUILD_DIR/artifacts

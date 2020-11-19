@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# script/bootstrap: Install dependencies that the application requires for building and running.
+# scripts/bootstrap: Install dependencies that the application requires for building and running.
 
 set -ex
 

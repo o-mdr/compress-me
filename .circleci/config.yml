@@ -12,7 +12,7 @@ jobs:
       - checkout
       - run:
           name: Run CI script
-          command: sh script/cibuild            
+          command: sh scripts/cibuild            
       - store_test_results:
           path: builddir/meson-logs
       - store_artifacts:
@@ -31,7 +31,7 @@ jobs:
       - checkout
       - run:
           name: Run CI script
-          command: sh script/cibuild            
+          command: sh scripts/cibuild            
       - store_test_results:
           path: builddir/meson-logs
       - store_artifacts:
@@ -50,7 +50,7 @@ jobs:
       - checkout
       - run:
           name: Run coverage script
-          command: sh script/cover            
+          command: sh scripts/cover            
       - store_artifacts:
           path: builddir_coverage/artifacts
       - store_artifacts:

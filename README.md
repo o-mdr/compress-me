@@ -26,7 +26,7 @@ int main(int argc, char **argv) {
 ## Prerequisites
 ```
 cd compress-me
-sudo bash script/bootstap
+sudo bash scripts/bootstap
 ```
 
 ## Building

@@ -6,9 +6,17 @@ project('compress-me',
 
 libcm_includes = include_directories('src')
 
-# Subprojects
+# Facebook's Zstd for compression
 subproject ('zstd')
 libzstd_dep = dependency('libzstd_dep', fallback : ['zstd', 'libzstd_dep'])
+
+# Google's benchmark for benchmarking
+subproject('benchmark')
+google_benchmark_dep = dependency('google_benchmark_dep', fallback : ['benchmark', 'google_benchmark_dep'])
+
+# Catch2 for unit testing
+subproject ('catch2')
+catch2_dep = dependency('catch2_dep', fallback : ['catch2', 'catch2_dep'])
 
 # Library
 if get_option('enable-lib')
@@ -24,6 +32,10 @@ endif
 # Tests
 if get_option('enable-tests')
     subdir('tests')
+endif
+
+if get_option('enable-benchmarks')
+  subdir('benchmarks')
 endif
 
 # Examples

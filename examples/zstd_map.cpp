@@ -5,7 +5,6 @@
  */
 
 #include "cm.h"
-#include <cstdint>  // uint8_t
 #include <iomanip>  // std::hex
 #include <iostream> // std::cout
 
@@ -18,7 +17,7 @@ int main(int argc, char **argv) {
 
     std::cout << "Inserting: [" << value << "]\n";
     auto result = cm::insert(cm, key, value.c_str(), value.size());
-    cm::cm_map<int>::iterator it = result.first;
+    auto it = result.first;
     auto raw_bytes = it->second.compressed_value;
 
     std::cout << "Compressed into: ";
