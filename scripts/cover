@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# scripts/cever: Run code coverage using gcovr
+# scripts/cover: Run code coverage using gcovr
 
 set -eux
 

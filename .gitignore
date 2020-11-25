@@ -4,3 +4,7 @@ subprojects
 
 # But not wrap files in subprojects
 !subprojects/*.wrap
+
+# Static code analysers
+cov-int
+compress-me.lzma

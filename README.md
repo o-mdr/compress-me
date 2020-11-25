@@ -1,11 +1,13 @@
 # Compress data structures for cpp
 
 [![CircleCI](https://circleci.com/gh/o-mdr/compress-me.svg?style=svg&circle-token=15153e079b8e597f4d30dfcd35766b16ce07f0b3)](https://app.circleci.com/pipelines/github/o-mdr/compress-me)
-[![License](https://img.shields.io/badge/license-GPL-green.svg)](https://github.com/o-mdr/compress-me/blob/main/COPYING) 
-[![License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/o-mdr/compress-me/blob/main/LICENSE) 
 <a href="https://scan.coverity.com/projects/o-mdr-compress-me">
   <img alt="Coverity Scan Build Status" src="https://img.shields.io/coverity/scan/22118.svg"/>
 </a>
+
+[![License](https://img.shields.io/badge/license-GPL-green.svg)](https://github.com/o-mdr/compress-me/blob/main/COPYING) 
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/o-mdr/compress-me/blob/main/LICENSE) 
+
 
 Use compression with data structures, minimal example:
 ```

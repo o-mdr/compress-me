@@ -23,7 +23,6 @@ export PATH=$PATH:$HOME/.local/bin
 
 echo "==> Running meson steps..."
 rm -rf $BUILD_DIR
-
 meson setup $BUILD_DIR
 meson compile -C $BUILD_DIR
 meson test -C $BUILD_DIR

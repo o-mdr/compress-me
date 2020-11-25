@@ -11,7 +11,7 @@ apt-get update;
 
 echo "==> Installing build tools..."
 apt-get -y install python3 python3-pip python3-setuptools python3-wheel ninja-build \
-           build-essential valgrind pkg-config doxygen
+           build-essential valgrind pkg-config doxygen wget
 
 echo "==> Installing clang tools..."
 apt-get -y install clang clang-format

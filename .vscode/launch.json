@@ -5,7 +5,7 @@
             "name": "(gdb) Launch Tests",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/builddir/tests/cm_unit_tests",
+            "program": "${workspaceFolder}/builddir/tests/cmtest",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}/builddir/",

@@ -1,0 +1,38 @@
+#!/bin/bash
+
+# scripts/coverity: Run code analysis using coverity. Expects that Coverity build tool is added
+#                   to the $PATH variable. Coverity build tool ~900 MB compressed, so it is 
+#                   not committed. There are restrictions on frequence of scans as well. 
+
+set -eux
+
+ROOT="$(dirname "$0")/.." 
+BUILD_DIR=cov-int
+PROJECT=compress-me
+PROJECT_VERSION=0.0.1
+PROJECT_DESCRIPTION=compress-me
+
+COVERITY_USR_TOKEN=***NOT_COMMITTED_CHECK_PWD_DATABASE***
+COVERITY_USR_EMAIL=***NOT_COMMITTED_CHECK_PWD_DATABASE***
+
+cd $ROOT
+
+mkdir -p cov-int
+
+echo "==> Running coverity analysis..."
+rm -rf $BUILD_DIR
+meson setup $BUILD_DIR
+cov-build --dir $BUILD_DIR meson compile -C $BUILD_DIR
+tail cov-int/build-log.txt
+tar caf $PROJECT.lzma $BUILD_DIR
+
+curl --form token=$COVERITY_USR_TOKEN \
+  --form email=$COVERITY_USR_EMAIL \
+  --form file=@$PROJECT.lzma \
+  --form version=$PROJECT_VERSION \
+  --form description=$PROJECT_DESCRIPTION \
+  https://scan.coverity.com/builds?project=o-mdr%2Fcompress-me
+
+cd $ROOT
+
+echo "Analisis is finished"
